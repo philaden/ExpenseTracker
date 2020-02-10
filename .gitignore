@@ -8,9 +8,9 @@
 *.sln.docstates
 
 # folders Ignore
-ExpenseTracker/bin
-ExpenseTracker/obj
-ExpenseTracker/debug
+ExpenseTracker.Api/bin
+ExpenseTracker.Api/obj
+ExpenseTracker.Api/debug
 ExpenseTracker/src/.idea
 ExpenseTracker.Test/bin
 ExpenseTracker.Test/obj

@@ -1,9 +1,9 @@
-﻿using ExpenseTracker.Data;
-using ExpenseTracker.Data.Domains;
-using ExpenseTracker.Repositories;
-using ExpenseTracker.Services.Implementations;
-using ExpenseTracker.Services.Interfaces;
-using ExpenseTracker.ViewModels;
+﻿using ExpenseTracker.Api.Data;
+using ExpenseTracker.Api.Data.Domains;
+using ExpenseTracker.Api.Repositories;
+using ExpenseTracker.Api.Services.Implementations;
+using ExpenseTracker.Api.Services.Interfaces;
+using ExpenseTracker.Api.ViewModels;
 using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
@@ -21,6 +21,7 @@ namespace ExpenseTracker.Test
         private Mock<IBaseRepository<ExpenseTrackerContext>> _baseRepository;
         private Mock<ILogger<ExpenseService>> _logger;
 
+        #region Test Data for expense service
         private const int _Id = 2;
 
         private readonly string _startDate = new DateTime(2020, 02, 07).ToString("yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
@@ -30,19 +31,19 @@ namespace ExpenseTracker.Test
         {
             new ReadExpenseVm
             {
-                Id = 1, Created = "2020-02-07 00:00", ReasonForExpense = "Payment of School Fee",  ValueOfExpense = 450000.00,  IsActive = true
+                Id = 1, Created = "2020-02-07 00:00", ReasonForExpense = "Payment of School Fee",  ValueOfExpense = 450000.00
             },
             new ReadExpenseVm
             {
-                Id = 2, Created = "2020-02-07 00:00", ReasonForExpense = "Transportation",  ValueOfExpense = 450000.00,  IsActive = true
+                Id = 2, Created = "2020-02-07 00:00", ReasonForExpense = "Transportation",  ValueOfExpense = 450000.00
             },
             new ReadExpenseVm
             {
-                Id = 3, Created = "2020-02-08 00:00", ReasonForExpense = "Leisure",  ValueOfExpense = 450000.00,  IsActive = true
+                Id = 3, Created = "2020-02-08 00:00", ReasonForExpense = "Leisure",  ValueOfExpense = 450000.00
             },
             new ReadExpenseVm
             {
-                Id = 3, Created = "2020-02-08 00:00", ReasonForExpense = "Charity",  ValueOfExpense = 450000.00,  IsActive = true
+                Id = 3, Created = "2020-02-08 00:00", ReasonForExpense = "Charity",  ValueOfExpense = 450000.00
             }
         };
 
@@ -68,7 +69,7 @@ namespace ExpenseTracker.Test
 
         private readonly ReadExpenseVm _expenseReadDatum = new ReadExpenseVm
         {
-            Id = 2, Created = "2020-02-07 10:00", ReasonForExpense = "Payment of School Fee", ValueOfExpense = 450000.00, IsActive = true
+            Id = 2, Created = "2020-02-07 10:00", ReasonForExpense = "Payment of School Fee", ValueOfExpense = 450000.00
         };
 
         private readonly Expense _expenseDatum = new Expense
@@ -87,12 +88,30 @@ namespace ExpenseTracker.Test
             Created = "2020-02-07 10:00", ReasonForExpense = "Payment of School Fee", ValueOfExpense = 450000.00
         };
 
-        private readonly ExpenseVm _updateExpenseDatumVm = new ExpenseVm
+        private readonly UpdateExpenseVm _updateExpenseDatumVm = new UpdateExpenseVm
         {
+            Id = 2,
             Created = "2020-02-07 10:00",
             ReasonForExpense = "Payment of School Fee",
             ValueOfExpense = 420000.00
         };
+
+        private readonly UpdateExpenseVm _InvaidUpdateExpenseDatumVm = new UpdateExpenseVm
+        {
+            Id = 0,
+            Created = "2020-02-07 10:00",
+            ReasonForExpense = "Payment of School Fee",
+            ValueOfExpense = 420000.00
+        };
+
+        private readonly ExpenseVm _InvaidUpdateExpenseDatum = new ExpenseVm
+        {
+            Created = "2020-02-07 10:00",
+            ReasonForExpense = null,
+            ValueOfExpense = 420000.00
+        };
+
+        #endregion
 
         [SetUp]
         public void SetUp()
@@ -147,7 +166,7 @@ namespace ExpenseTracker.Test
         {
             _baseRepository.Setup(exp => exp.GetById<Expense>(_Id)).Returns(_deleteExpenseDatum);
             _baseRepository.Setup(exp => exp.Update(_deleteExpenseDatum)).Returns(true);
-            var response = _expenseService.UpdateExpense(_Id, _updateExpenseDatumVm);
+            var response = _expenseService.UpdateExpense(_updateExpenseDatumVm);
             Assert.That(response, Is.EqualTo(true));
         }
 
@@ -155,15 +174,15 @@ namespace ExpenseTracker.Test
         public void UpdateExpense_PostInValidId_ReturnsFalsyValue()
         {
             _baseRepository.Setup(exp => exp.Update(_expenseDatum)).Returns(true);
-            var response = _expenseService.UpdateExpense(0, _postExpenseDatum);
+            var response = _expenseService.UpdateExpense(_InvaidUpdateExpenseDatumVm);
             Assert.That(response, Is.EqualTo(false));
         }
 
         [Test]
         public void UpdateExpense_PostInValidExpenseData_ReturnsFalsyValue()
         {
-            _baseRepository.Setup(exp => exp.Update(_expenseDatum)).Returns(true);
-            var response = _expenseService.UpdateExpense(_Id, null);
+            _baseRepository.Setup(exp => exp.Update(_InvaidUpdateExpenseDatum)).Returns(false);
+            var response = _expenseService.UpdateExpense(_InvaidUpdateExpenseDatumVm);
             Assert.That(response, Is.EqualTo(false));
         }
 
