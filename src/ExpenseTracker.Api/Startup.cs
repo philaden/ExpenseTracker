@@ -27,6 +27,7 @@ namespace ExpenseTracker
         {
             ServiceConfiguration.AddDbConfig(services, Configuration);
             ServiceConfiguration.RegisterDependencies(services);
+            ServiceConfiguration.AddDocumentationServices(services);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -40,6 +41,15 @@ namespace ExpenseTracker
             }
 
             app.UseMvc();
+
+            app.UseSwagger(c => c.RouteTemplate = "swagger/{documentName}/swagger.json");
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
+            });
+
+
 
             ApplicationLogging.ConfigureLogger(loggerFactory);
         }

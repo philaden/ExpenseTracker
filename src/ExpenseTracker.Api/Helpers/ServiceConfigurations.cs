@@ -1,14 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ExpenseTracker.Api.Data;
 using ExpenseTracker.Api.Repositories;
 using ExpenseTracker.Api.Services.Interfaces;
 using ExpenseTracker.Api.Services.Implementations;
+
 
 namespace ExpenseTracker.Api.Helpers
 {
@@ -23,6 +20,15 @@ namespace ExpenseTracker.Api.Helpers
         {
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IExpenseService, ExpenseService>();
+
+        }
+
+        public static void AddDocumentationServices(this IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "V1 Docs", Version = "v1" });
+            });
 
         }
     }
