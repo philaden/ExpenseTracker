@@ -42,7 +42,7 @@ namespace ExpenseTracker.Api.Services.Implementations
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message + "=>" + e.InnerException);
+                _logger.LogError(e.Message + "=>" + e.InnerException + "||" + e.StackTrace);
                 return new List<ReadExpenseVm>();
             }
         }
@@ -72,7 +72,7 @@ namespace ExpenseTracker.Api.Services.Implementations
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message + "=>" + e.InnerException);
+                _logger.LogError(e.Message + "=>" + e.InnerException + "||" + e.StackTrace);
                 return new List<ReadExpenseVm>();
             }
         
@@ -94,7 +94,7 @@ namespace ExpenseTracker.Api.Services.Implementations
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message + "=>" + e.InnerException);
+                _logger.LogError(e.Message + "=>" + e.InnerException + "||" + e.StackTrace);
                 return new ReadExpenseVm();
             }
         }
@@ -118,7 +118,7 @@ namespace ExpenseTracker.Api.Services.Implementations
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message + "=>" + e.InnerException);
+                _logger.LogError(e.Message + "=>" + e.InnerException + "||" + e.StackTrace);
                 return false;
             }
         }
@@ -148,7 +148,7 @@ namespace ExpenseTracker.Api.Services.Implementations
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message + "=>" + e.InnerException);
+                _logger.LogError(e.Message + "=>" + e.InnerException + "||" + e.StackTrace);
                 return false;
             }
         }
@@ -166,7 +166,7 @@ namespace ExpenseTracker.Api.Services.Implementations
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message + "=>" + e.InnerException);
+                _logger.LogError(e.Message + "=>" + e.InnerException + "||" + e.StackTrace);
                 return false;
             }
         }

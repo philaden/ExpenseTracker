@@ -28,7 +28,7 @@ namespace ExpenseTracker.Api.Controllers
             _logger = logger;
         }
         
-        //Kindly Note that these endpoints is an Implementatiion of Microsoft Specification "JSEND" for JSON Result
+        //PLEASE NOTE:  These endpoints is an Implementatiion of Microsoft Specification "JSEND" for JSON Result
 
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace ExpenseTracker.Api.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message + "=>" + e.InnerException);
+                _logger.LogError(e.Message + "=>" + e.InnerException + "||" + e.StackTrace);
                 return Json(ResponseData.SendExceptionMsg(e));
             }
         }
@@ -98,7 +98,7 @@ namespace ExpenseTracker.Api.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message + "=>" + e.InnerException);
+                _logger.LogError(e.Message + "=>" + e.InnerException + "||" + e.StackTrace);
                 return Json(ResponseData.SendExceptionMsg(e));
             }
         }
@@ -119,7 +119,7 @@ namespace ExpenseTracker.Api.Controllers
             }
             catch(Exception e)
             {
-                _logger.LogError(e.Message + "=>" + e.InnerException);
+                _logger.LogError(e.Message + "=>" + e.InnerException + "||" + e.StackTrace);
                 return Json(ResponseData.SendExceptionMsg(e));
             }             
         }
@@ -141,7 +141,7 @@ namespace ExpenseTracker.Api.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message + "=>" + e.InnerException);
+                _logger.LogError(e.Message + "=>" + e.InnerException + "||" + e.StackTrace);
                 return Json(ResponseData.SendExceptionMsg(e));
             }
         }
@@ -162,7 +162,7 @@ namespace ExpenseTracker.Api.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message + "=>" + e.InnerException);
+                _logger.LogError(e.Message + "=>" + e.InnerException + "||" + e.StackTrace);
                 return Json(ResponseData.SendExceptionMsg(e));
             }
         }
