@@ -7,4 +7,4 @@ a. Run dotnet restore to install dependencies
 b. Run dotnet build
 c. startup the application by running dotnet run
 
-
+Kindly note the following instructions to test the endpoints:
