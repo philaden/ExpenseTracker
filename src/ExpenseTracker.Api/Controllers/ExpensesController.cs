@@ -43,7 +43,7 @@ namespace ExpenseTracker.Api.Controllers
                 var expensesData = _expenseService.ReadExpenses();
 
                 return !expensesData.Any() ?
-                   Json(ResponseData.SendFailMsg("There are no expenses data available, Kindly set your expenses for tracking")) :
+                   Json(ResponseData.SendFailMsg("There are no expenses and vat data available, Kindly set your expenses for tracking")) :
                    Json(ResponseData.SendSuccessMsg(data: expensesData));
             }
             catch(Exception e)
@@ -54,7 +54,7 @@ namespace ExpenseTracker.Api.Controllers
         }
 
         /// <summary>
-        /// This endpoint fetches expenses data based on date parameters
+        /// This endpoint fetches expenses and vat data based on date parameters
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
@@ -68,7 +68,7 @@ namespace ExpenseTracker.Api.Controllers
                 var expensesData = _expenseService.ReadExpensesByDate(startDate, endDate);
 
                 return !expensesData.Any() ?
-                   Json(ResponseData.SendFailMsg("There are no expenses data available for this period")) :
+                   Json(ResponseData.SendFailMsg("There are no expenses and vat data available for this period")) :
                    Json(ResponseData.SendSuccessMsg(data: expensesData));
             }
             catch (Exception e)
