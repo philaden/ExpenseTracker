@@ -33,6 +33,7 @@ namespace ExpenseTracker.Api.Services.Implementations
                     new ReadExpenseVm
                     {
                         Id = x.Id,
+                        VatAmount = EstimateVatAmount(x.ValueOfExpense),
                         ValueOfExpense = x.ValueOfExpense,
                         ReasonForExpense = x.ReasonForExpense,
                         Created = x.Created.ToString("yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture)
@@ -63,6 +64,7 @@ namespace ExpenseTracker.Api.Services.Implementations
                     new ReadExpenseVm
                     {
                         Id = x.Id,
+                        VatAmount = EstimateVatAmount(x.ValueOfExpense),
                         ValueOfExpense = x.ValueOfExpense,
                         ReasonForExpense = x.ReasonForExpense,
                         Created = x.Created.ToString("yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture)
@@ -87,6 +89,7 @@ namespace ExpenseTracker.Api.Services.Implementations
                 return new ReadExpenseVm
                 {
                     Id = data.Id,
+                    VatAmount = EstimateVatAmount(data.ValueOfExpense),
                     ValueOfExpense = data.ValueOfExpense,
                     ReasonForExpense = data.ReasonForExpense,
                     Created = data.Created.ToString("yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture)
@@ -169,6 +172,13 @@ namespace ExpenseTracker.Api.Services.Implementations
                 _logger.LogError(e.Message + "=>" + e.InnerException + "||" + e.StackTrace);
                 return false;
             }
+        }
+
+        private double EstimateVatAmount(double expenseValue)
+        {
+            const double VatRate = 0.075d;
+            var vatValue = expenseValue * (VatRate / (1 + VatRate));
+            return Math.Round(vatValue, 2);
         }
     }
 }

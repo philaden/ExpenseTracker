@@ -31,19 +31,19 @@ namespace ExpenseTracker.Test
         {
             new ReadExpenseVm
             {
-                Id = 1, Created = "2020-02-07 00:00", ReasonForExpense = "Payment of School Fee",  ValueOfExpense = 450000.00
+                Id = 1, Created = "2020-02-07 00:00", ReasonForExpense = "Payment of School Fee",  ValueOfExpense = 450000.00, VatAmount = 31395.35
             },
             new ReadExpenseVm
             {
-                Id = 2, Created = "2020-02-07 00:00", ReasonForExpense = "Transportation",  ValueOfExpense = 450000.00
+                Id = 2, Created = "2020-02-07 00:00", ReasonForExpense = "Transportation",  ValueOfExpense = 450000.00, VatAmount = 31395.35
             },
             new ReadExpenseVm
             {
-                Id = 3, Created = "2020-02-08 00:00", ReasonForExpense = "Leisure",  ValueOfExpense = 450000.00
+                Id = 3, Created = "2020-02-08 00:00", ReasonForExpense = "Leisure",  ValueOfExpense = 450000.00, VatAmount = 31395.35
             },
             new ReadExpenseVm
             {
-                Id = 3, Created = "2020-02-08 00:00", ReasonForExpense = "Charity",  ValueOfExpense = 450000.00
+                Id = 3, Created = "2020-02-08 00:00", ReasonForExpense = "Charity",  ValueOfExpense = 450000.00, VatAmount = 31395.35
             }
         };
 
@@ -69,7 +69,7 @@ namespace ExpenseTracker.Test
 
         private readonly ReadExpenseVm _expenseReadDatum = new ReadExpenseVm
         {
-            Id = 2, Created = "2020-02-07 10:00", ReasonForExpense = "Payment of School Fee", ValueOfExpense = 450000.00
+            Id = 2, Created = "2020-02-07 10:00", ReasonForExpense = "Payment of School Fee", ValueOfExpense = 450000.00, VatAmount = 31395.35
         };
 
         private readonly Expense _expenseDatum = new Expense
@@ -118,7 +118,7 @@ namespace ExpenseTracker.Test
         {
             _baseRepository = new Mock<IBaseRepository<ExpenseTrackerContext>>();
             _logger = new Mock<ILogger<ExpenseService>>();
-            _expenseService = new ExpenseService(_baseRepository.Object, null);
+            _expenseService = new ExpenseService(_baseRepository.Object, _logger.Object);
         }
 
         [Test]

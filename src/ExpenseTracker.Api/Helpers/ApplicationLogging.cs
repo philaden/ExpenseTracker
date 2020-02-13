@@ -13,6 +13,7 @@ namespace ExpenseTracker.Api.Helpers
 		public static void ConfigureLogger(ILoggerFactory factory)
 		{
 			factory.AddDebug(LogLevel.Debug);
+			factory.AddConsole();
 		}
 
 		public static ILoggerFactory LoggerFactory
