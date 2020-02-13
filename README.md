@@ -1,6 +1,7 @@
 # ExpenseTracker
-This is a simple expense tracker that allows a user to enter expenses and have them saved for later use. This project is written in asp.net core because it's open source while Microsoft SQL Server was used as datastore.
+This is a simple expense tracker that allows a user to enter expenses and have them saved for later use. A user can also see the value of the VAT that applied to each expense.
 
+This project is written in asp.net core because it's open source while Microsoft SQL Server was used as datastore.
 
 Kindly observe the following instructions to run the application using CLI
 a. Run dotnet restore to install dependencies
