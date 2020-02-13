@@ -32,11 +32,11 @@ POST http://localhost:59408/api/expenses/setExpense
 	"ValueOfExpense" : 450000.00
 }
 
-2. {baseUrl}/api/expenses/getExpenses: To all fetch expenses data.
+2. {baseUrl}/api/expenses/getExpenses: To all fetch expenses and VAT data.
 Example:
 GET http://localhost:59408/api/expenses/getExpenses
 
-3. {baseUrl}/api/expenses/getExpensesByDate: To fetch the list of expenses data by passing start and end dates
+3. {baseUrl}/api/expenses/getExpensesByDate: To fetch the list of expenses and VAT data by passing start and end dates
 Example:
 GET http://localhost:59408/api/expenses/getExpensesByDate?startDate=2020-02-07 10:00&endDate=2020-02-07 10:00
 
@@ -44,7 +44,7 @@ GET http://localhost:59408/api/expenses/getExpensesByDate?startDate=2020-02-07 1
 Example:
 GET http://localhost:59408/api/expenses/deleteExpense?Id=1
 
-5. {baseUrl}/api/expenses/updateExpense To update an expense record by passing the it's Id and the new update model.
+5. {baseUrl}/api/expenses/updateExpense To update an expense record by passing the its Id and the new update model.
 Example:
 POST http://localhost:59408/api/expenses/updateExpense
 {
