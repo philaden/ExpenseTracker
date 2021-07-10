@@ -150,7 +150,7 @@ namespace ExpenseTracker.Test
         {
             _expenseService.Setup(exp => exp.ReadExpenses()).Returns(_expensesReadData);
             var response = GetController();
-            var res = (ResponseData)response.GetExpenses().Value;
+            var res = (ResponseData)response.GetExpenses();
             Assert.That(res.Status, Is.EqualTo(true));
             Assert.That(response, Is.Not.Null);
         }
@@ -160,7 +160,7 @@ namespace ExpenseTracker.Test
         {
             _expenseService.Setup(exp => exp.ReadExpensesByDate(_startDate, _endDate)).Returns(_expensesReadData);
             var response = GetController();
-            var res = (ResponseData)response.GetExpensesByDate(_startDate, _endDate).Value;
+            var res = (ResponseData)response.GetExpensesByDate(_startDate, _endDate);
             Assert.That(res.Data, Is.Not.Null);
             Assert.That(res.Status, Is.True);
         }
@@ -169,7 +169,7 @@ namespace ExpenseTracker.Test
         {
             _expenseService.Setup(exp => exp.ReadExpensesByDate(null, _endDate)).Returns(new List<ReadExpenseVm>());
             var response = GetController();
-            var res = (ResponseData)response.GetExpensesByDate(null, _endDate).Value;
+            var res = (ResponseData)response.GetExpensesByDate(null, _endDate);
             Assert.That(res.Data, Is.Null);
             Assert.That(res.Status, Is.False);
         }
@@ -179,7 +179,7 @@ namespace ExpenseTracker.Test
         {
             _expenseService.Setup(exp => exp.ReadExpense(_Id)).Returns(_expenseReadDatum);
             var response = GetController();
-            var res = (ResponseData)response.GetExpense(_Id).Value;
+            var res = (ResponseData)response.GetExpense(_Id);
             Assert.That(((ReadExpenseVm)res.Data).Id, Is.EqualTo(_expenseReadDatum.Id));
             Assert.That(response, Is.Not.Null);
         }
@@ -189,7 +189,7 @@ namespace ExpenseTracker.Test
         {
             _expenseService.Setup(exp => exp.SetExpense(_postExpenseDatum)).Returns(true);
             var response = GetController();
-            var res = (ResponseData)response.SetExpense(_postExpenseDatum).Value;
+            var res = (ResponseData)response.SetExpense(_postExpenseDatum);
             Assert.That(res.Status, Is.True);
         }
 

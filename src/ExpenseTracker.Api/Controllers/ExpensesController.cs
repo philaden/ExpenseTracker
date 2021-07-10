@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace ExpenseTracker.Api.Controllers
 {
-    [Route("api/expenses")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class ExpensesController : Controller
     {
@@ -28,15 +28,12 @@ namespace ExpenseTracker.Api.Controllers
             _logger = logger;
         }
         
-        //PLEASE NOTE:  These endpoints is an Implementatiion of Microsoft Specification "JSEND" for JSON Result
-
-
         /// <summary>
         /// This endpoint fetches all expenses records set by the user
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("getExpenses")]
-        public JsonResult GetExpenses()
+        public IActionResult GetExpenses()
         {
             try
             {
@@ -60,7 +57,7 @@ namespace ExpenseTracker.Api.Controllers
         /// <param name="endDate"></param>
         /// <returns></returns>
         [HttpGet, Route("getExpensesByDate")]
-        public JsonResult GetExpensesByDate(string startDate, string endDate)
+        public IActionResult GetExpensesByDate(string startDate, string endDate)
         {
             try
             {
@@ -85,7 +82,7 @@ namespace ExpenseTracker.Api.Controllers
         /// <param name="Id"></param>
         /// <returns></returns>
         [HttpGet, Route("getExpense")]
-        public JsonResult GetExpense(int Id)
+        public IActionResult GetExpense(int Id)
         {
             try
             {
@@ -109,7 +106,7 @@ namespace ExpenseTracker.Api.Controllers
         /// <param name="expense"></param>
         /// <returns></returns>
         [HttpPost, Route("setExpense")]
-        public JsonResult SetExpense([FromBody] ExpenseVm expense)
+        public IActionResult SetExpense([FromBody] ExpenseVm expense)
         {
             try
             {
@@ -130,7 +127,7 @@ namespace ExpenseTracker.Api.Controllers
         /// <param name="expense"></param>
         /// <returns></returns>
         [HttpPost, Route("updateExpense")]
-        public JsonResult UpdateExpense([FromBody] UpdateExpenseVm expense)
+        public IActionResult UpdateExpense([FromBody] UpdateExpenseVm expense)
         {
             try
             {
@@ -152,7 +149,7 @@ namespace ExpenseTracker.Api.Controllers
         /// <param name="Id"></param>
         /// <returns></returns>
         [HttpGet, Route("deleteExpense")]
-        public JsonResult DeleteExpense(int Id)
+        public IActionResult DeleteExpense(int Id)
         {
             try
             {

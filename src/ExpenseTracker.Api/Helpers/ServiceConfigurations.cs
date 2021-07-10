@@ -5,7 +5,7 @@ using ExpenseTracker.Api.Data;
 using ExpenseTracker.Api.Repositories;
 using ExpenseTracker.Api.Services.Interfaces;
 using ExpenseTracker.Api.Services.Implementations;
-
+using Microsoft.OpenApi.Models;
 
 namespace ExpenseTracker.Api.Helpers
 {
@@ -23,12 +23,37 @@ namespace ExpenseTracker.Api.Helpers
 
         }
 
-        public static void AddDocumentationServices(this IServiceCollection services)
+        public static IServiceCollection  AddDocumentationServices(this IServiceCollection services, IConfiguration configuration)
         {
+            string ApplicationName = "Expense Tracker";
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "V1 Docs", Version = "v1" });
+                c.CustomSchemaIds(x => x.FullName);
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = $"{ApplicationName} API", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] { }
+                    }
+                });
+
             });
+            return services;
 
         }
     }

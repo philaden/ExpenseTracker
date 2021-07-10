@@ -22,11 +22,14 @@ namespace ExpenseTracker
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers();
+            
             ServiceConfiguration.AddDbConfig(services, Configuration);
             ServiceConfiguration.RegisterDependencies(services);
-            ServiceConfiguration.AddDocumentationServices(services);
+            ServiceConfiguration.AddDocumentationServices(services, Configuration);
 
-            services.AddMvc();
+            services.AddHttpContextAccessor();
+            services.AddMvcCore().AddControllersAsServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,20 +38,27 @@ namespace ExpenseTracker
             if (!Env.EnvironmentName.Equals("production", StringComparison.CurrentCultureIgnoreCase))
             {
                 app.UseDeveloperExceptionPage();
-            }
+            };
 
-            app.UseMvc();
-
-            app.UseSwagger(c => c.RouteTemplate = "swagger/{documentName}/swagger.json");
-
+            app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "V1 Docs");
+                c.SwaggerEndpoint("v1/swagger.json", $"Expense Tracker API V1");
             });
 
+            app.UseForwardedHeaders();
 
+            app.UseHttpsRedirection();
+            app.UseRouting();
+            app.UseStaticFiles();
 
             ApplicationLogging.ConfigureLogger(loggerFactory);
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
         }
     }
 }
