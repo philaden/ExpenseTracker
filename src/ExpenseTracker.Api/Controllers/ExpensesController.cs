@@ -148,7 +148,7 @@ namespace ExpenseTracker.Api.Controllers
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
-        [HttpGet, Route("deleteExpense")]
+        [HttpDelete, Route("deleteExpense")]
         public IActionResult DeleteExpense(int Id)
         {
             try
