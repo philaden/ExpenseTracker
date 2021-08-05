@@ -13,7 +13,7 @@ namespace ExpenseTracker.Api.Helpers
     {
         public static void AddDbConfig(this IServiceCollection services, IConfiguration Configuration)
         {
-            services.AddDbContext<ExpenseTrackerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ExpenseMonitorDb")));
+            services.AddDbContext<ExpenseTrackerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
         }
 
         public static void RegisterDependencies(this IServiceCollection services)
