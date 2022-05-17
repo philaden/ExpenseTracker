@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/ExpenseTracker.Api/bin/Debug/net5.0/ExpenseTracker.Api.dll",
+            "program": "${workspaceFolder}/src/ExpenseTracker.Api/bin/Debug/net6.0/ExpenseTracker.Api.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/ExpenseTracker.Api",
             "stopAtEntry": false,
