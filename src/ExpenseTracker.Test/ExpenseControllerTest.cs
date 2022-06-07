@@ -114,7 +114,6 @@ namespace ExpenseTracker.Test
 
         private readonly ExpenseVm _postExpenseDatum = new ExpenseVm
         {
-            Created = "2020-02-07 10:00",
             ReasonForExpense = "Payment of School Fee",
             ValueOfExpense = 450000.00
         };
@@ -137,7 +136,6 @@ namespace ExpenseTracker.Test
 
         private readonly ExpenseVm _InvaidUpdateExpenseDatum = new ExpenseVm
         {
-            Created = "2020-02-07 10:00",
             ReasonForExpense = null,
             ValueOfExpense = 420000.00
         };

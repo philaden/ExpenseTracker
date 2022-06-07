@@ -11,5 +11,6 @@ namespace ExpenseTracker.Api.ViewModels
         [Required]
         public int Id { get; set; }
         public double VatAmount { get; set; }
+        public string Created { get; set; }
     }
 }

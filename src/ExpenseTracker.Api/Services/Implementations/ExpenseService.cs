@@ -112,7 +112,6 @@ namespace ExpenseTracker.Api.Services.Implementations
                 {
                     ReasonForExpense = expense.ReasonForExpense,
                     ValueOfExpense = expense.ValueOfExpense,
-                    Created = DateTime.ParseExact(expense.Created, "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture),
                     IsActive = true
                 };
 

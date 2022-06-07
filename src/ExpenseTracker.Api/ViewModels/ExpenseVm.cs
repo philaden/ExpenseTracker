@@ -12,7 +12,5 @@ namespace ExpenseTracker.Api.ViewModels
         public double ValueOfExpense { get; set; }
         [Required]
         public string ReasonForExpense { get; set; }
-        [Required]
-        public string Created { get; set; }
     }
 }
