@@ -20,8 +20,8 @@ namespace ExpenseTracker.Api.Data.Domains
         {
             IsActive = true;
             IsDeleted = false;
-            Created = DateTime.Now;
-            Modified = DateTime.Now;
+            Created = DateTime.UtcNow;
+            Modified = DateTime.UtcNow;
         }
     }
 }

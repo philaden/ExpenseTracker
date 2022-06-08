@@ -30,6 +30,7 @@ namespace ExpenseTracker
 
             services.AddHttpContextAccessor();
             services.AddMvcCore().AddControllersAsServices();
+            services.AddDatabaseDeveloperPageExceptionFilter();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using ExpenseTracker.Api.Data;
 using ExpenseTracker.Api.Repositories;
 using ExpenseTracker.Api.Services.Interfaces;
 using ExpenseTracker.Api.Services.Implementations;
 using Microsoft.OpenApi.Models;
+using ExpenseTracker.Api.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTracker.Api.Helpers
 {
@@ -13,7 +13,7 @@ namespace ExpenseTracker.Api.Helpers
     {
         public static void AddDbConfig(this IServiceCollection services, IConfiguration Configuration)
         {
-            services.AddDbContext<ExpenseTrackerContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
+            services.AddDbContext<ExpenseTrackerContext>(options => options.UseNpgsql(Configuration.GetConnectionString("MyDbConnection")));
         }
 
         public static void RegisterDependencies(this IServiceCollection services)
